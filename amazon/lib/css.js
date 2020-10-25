@@ -334,7 +334,7 @@ function apply_MQ()
 function apply_css_to_children(el, clas)
 {
 	clas = clas.replace("chd-", "")
-	console.log("clas : %s", clas)
+	//console.log("clas : %s", clas)
 	let chdrn = el.children
 	if(chdrn.length)
 	{
