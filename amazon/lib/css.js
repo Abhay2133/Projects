@@ -145,17 +145,18 @@ function apply_CSS (cb)
 function loop (el, cb)
 {
 	let arr = el.children;
-	cb(el, el.className.split(" "))
+
 	if(arr.length)
 	{
-    for(let i of arr)
-    {
-       let clas = i.className.split(" ");
-       cb(i, clas);
+   	 for(let i of arr)
+ 	   {
+  	     let clas = i.className.split(" ");
+  	     cb(i, clas);
             
-    	loop(i, apply_style);
-    }
+  	  	loop(i, apply_style);
+  	  }
 	}
+	cb(el, el.className.split(" "))
 }
 
 function apply_style (el, clas)
@@ -181,6 +182,11 @@ let styleRule = {};
         let key ="", valu = "";
         let styleName = i.split("-");
         
+        if(styleName[0] == "chd")
+        {
+        	apply_css_to_children(el, i);
+        	continue;
+       }
          if(styleName[0] == "hbr")
 		{
 		if(!hbr.includes(i))
@@ -323,12 +329,23 @@ function apply_MQ()
    {
        i.style.padding = "10px 40px";
     }
-    
-    console.log('iteration count : %i', ict)
-
 }
 
-
+function apply_css_to_children(el, clas)
+{
+	clas = clas.replace("chd-", "")
+	console.log("clas : %s", clas)
+	let chdrn = el.children
+	if(chdrn.length)
+	{
+		for(let i of chdrn)
+		{
+			apply_style(i, [clas]);
+		}
+	}
+	else
+		return;
+}
 
 
 

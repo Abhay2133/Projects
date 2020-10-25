@@ -15,33 +15,52 @@
 
 <nav class="p-s d-flx jc-spb m-n bg-444 clr-W">
   <div class="d-flx">
-    <div class="d-ib hbr-bg-cgrey rc-s lte-bdr-c" onclick="ses('#menu-list').style.display = 'block'">
-
-  			<hr class="w-25p bg-cwhite m-7p">
-		  	<hr class="w-25p bg-cwhite m-7p">
-			  <hr class="w-25p bg-cwhite m-7p">
-  		</div>
+    <div class="chd-w-25p chd-bg-cwhite chd-m-7p d-ib hbr-bg-cgrey rc-s lte-bdr-c" onclick="ses('#menu-list').style.display = 'block'">
+		<hr><hr><hr>
+	</div>
    <div id="logo" class="d-ib bolder f-xl tap trns-s">Ammizaan.in</div>
   </div>
   <div class="d-flx bdrc">
-    <div id="signin" class="sdh">Sign in</div>
-    <div id="cart" class="sdh">Cart</div>
+    <button id="signin" class=" f-l sdh bdr-0p bg-no clr-W">Sign in</button>
+	<button id="cart" class=" f-l sdh bdr-0p bg-no clr-W">Cart</button>
   </div>
 </nav>
 
-<div id="menu-list" class=" pos-fxd lf-n tp-n w-100% of-hdn h-100 bg-opac p-T-xl">
-  <div class="showCSS d-flx jc-fe">
+<div id="menu-list" class="none pos-fxd lf-n tp-n w-100% of-cscroll h-100 bg-opac p-T-xl">
+  <div class=" d-flx jc-fe">
    <div class="d-ib">
 <button class=" bolder f-xxl h-40p w-40p rc-s pop bdr bg-no zi-c9 bg-FFF" onclick="ses('#menu-list').style.display = 'none'">X</button>
     </div>
     </div>
-  <div id="menu-list" class=" pos-fxd lf-n tp-n w-80% h-100 bg-444 p-T-xl">
-  <a href="#" class=" d-b p idt bdr-B f-xxl bold">Hello, Sign in</a>
-  <a href="#" class="d-b p idt">PRODUCT</a>
-  <a href="#" class="d-b p idt">ABOUT</a>
-
-  </div>
+   
+  <div id="menu-list-items" class="chd-d-b chd-idt slideIn pos-fxd of-cscroll lf-n tp-n w-80% h-100 bg-FFF">
+  <div class="  d-b p-xl idt bdr-B f-xxl bolder pos-fxd tp-0p lf-0p w-i bg-W zi-c2">Hello, Sign in</div>
+  <a class="">HOME</a>
+  <a class="">ACCOUNT</a>
+  <a>ORDER</a>
+  <a>BUY AGAIN</a>
+  <a>LIST</a>
+  <a>CUSTOMER SERVICE</a>
+  <div class="d-b idt p-xl idt bdr-T-s f-xxl bolder bdr-C-c#00B1FF">EXPLORE</div>
+  <div class="d-b idt clr-cgrey">Top Category</div>
+  <a>Mobiles</a>
+  <a>Computers</a>
+  <a>Books</a>
+  <a>Amazon fashion</a>
+  <a>See all categories</a>
+  <div class="d-b idt clr-cgrey bdr-T bdr-C-c#E5E5E5 m">Programs and features</div>
+  <a>Today's Deals</a>
+  <a>Amazon Pay</a>
+  <a>Try Prime</a>
+  <a>Sell on Amazon</a>
+  <div class="d-b idt p-xl idt bdr-T-s f-xl bold bdr-C-c#00B1FF">Settings</div>
+  <a>Language</a>
+  <a>Notifications</a>
+  <a>Default Purchase Settings</a>
+  <a>Sign in</a>
+ </div>
 </div>  
 
+<script src="main.js"></script>
 </body>
 </html>
