@@ -13,6 +13,13 @@ a
 	color: black;
 	outline: none;
 	text-decoration: none;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative
 }
 
 bdrc *
@@ -35,17 +42,17 @@ bdrc *
   transform: translateY(5px) scale(0.8);
 }
 
-#menu-list > a:hover
-{
-  background: #FFFFFF;
-  color: #000000;
+#menu-list-items > *{
+	padding: 15px;
+	font-weight: 400;
+	position: relative;
+	top : 67px;
 }
 
-#menu-list a
+#menu-list-items > a:hover
 {
-  color: #FFF
+  background: #F0F0F0;
 }
-
 
 .pop
 {
@@ -80,3 +87,23 @@ bdrc *
 	}
 
 }
+
+.slideIn
+{
+	transform: translateX(-480px)
+	animation-fill-mode : forwards;
+	animation: slideR 0.2s linear 0s 1 normal;
+}
+
+@keyframes slideR
+{
+	from{ transform: translateX(-480px)}
+	to{transform : translateX(0px)}
+}
+
+
+
+
+
+
+
