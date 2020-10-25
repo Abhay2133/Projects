@@ -15,6 +15,38 @@ a
 	text-decoration: none;
 }
 
+bdrc *
+{
+  border: 1px solid;
+}
+
+#logo
+{
+  background-position-x: -10px;
+}
+
+.sdh:active
+{
+  transform: scale(0.8);
+}
+
+.tap:active
+{
+  transform: translateY(5px) scale(0.8);
+}
+
+#menu-list > a:hover
+{
+  background: #FFFFFF;
+  color: #000000;
+}
+
+#menu-list a
+{
+  color: #FFF
+}
+
+
 .pop
 {
 	box-shadow: 0px 3px 0px 0px  #333;

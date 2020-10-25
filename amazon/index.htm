@@ -3,7 +3,7 @@
 <Head>
  
 <link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/eruda" onload = "eruda.init()"></script>
+<script src="lib/eruda.js" onload = "eruda.init()"></script>
 <script src="lib/modules.js"></script>
 <script src="lib/css.js"></script>
 <script src="main.js"></script>
@@ -11,16 +11,37 @@
 <link rel="shortcut icon" href="../pics/db.jpg" type="image/x-icon">
 </head>
 
-<body class="f-17p" onload = "apply_CSS(apply_MQ)">
+<body class="f-17p bg-W" onload = "apply_CSS(apply_MQ)">
 
-<nav class="d-f m-n bg-444 clr-W">
-  <div class="p">
-    <div id="menu">
-      Menu
-    </div>
-    <div id="logo"></div>
+<nav class="p-s d-flx jc-spb m-n bg-444 clr-W">
+  <div class="d-flx">
+    <div class="d-ib hbr-bg-cgrey rc-s lte-bdr-c" onclick="ses('#menu-list').style.display = 'block'">
+
+  			<hr class="w-25p bg-cwhite m-7p">
+		  	<hr class="w-25p bg-cwhite m-7p">
+			  <hr class="w-25p bg-cwhite m-7p">
+  		</div>
+   <div id="logo" class="d-ib bolder f-xl tap trns-s">Ammizaan.in</div>
+  </div>
+  <div class="d-flx bdrc">
+    <div id="signin" class="sdh">Sign in</div>
+    <div id="cart" class="sdh">Cart</div>
   </div>
 </nav>
+
+<div id="menu-list" class=" pos-fxd lf-n tp-n w-100% of-hdn h-100 bg-opac p-T-xl">
+  <div class="showCSS d-flx jc-fe">
+   <div class="d-ib">
+<button class=" bolder f-xxl h-40p w-40p rc-s pop bdr bg-no zi-c9 bg-FFF" onclick="ses('#menu-list').style.display = 'none'">X</button>
+    </div>
+    </div>
+  <div id="menu-list" class=" pos-fxd lf-n tp-n w-80% h-100 bg-444 p-T-xl">
+  <a href="#" class=" d-b p idt bdr-B f-xxl bold">Hello, Sign in</a>
+  <a href="#" class="d-b p idt">PRODUCT</a>
+  <a href="#" class="d-b p idt">ABOUT</a>
+
+  </div>
+</div>  
 
 </body>
 </html>

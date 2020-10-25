@@ -1,3 +1,5 @@
+var ict = 0
+
 const prop1 = {
     p : "padding",
     m : "margin",
@@ -15,7 +17,11 @@ const prop1 = {
     clr :"color",
     cur : "cursor",
     trans : "transition",
-    jc : "justifyContent"
+    jc : "justifyContent",
+    tp : 'top',
+    lf : 'left',
+    pos : 'position',
+    zi : 'zIndex'
 }
 
 var hbr = [];
@@ -52,12 +58,16 @@ const val = {
     W : "white",
     m : "10px",
     a : "auto",
-    F : "flex",
+    flx : "flex",
     "50" : "50%",
     hdn : "hidden",
     i : "inherit",
     fs : "flex-start",
-    fe : 'flex-end'
+    fe : 'flex-end',
+    spb : 'space-between',
+    rel : 'relative',
+    fxd : 'fixed',
+    opac : 'rgba(0,0,0,0.5)'
 }
 
 const bdrVal = {
@@ -120,6 +130,7 @@ const spProp = {
 
 function apply_CSS (cb)
 {
+	
     let body = document.body;
     let bc = body.children
 
@@ -128,27 +139,23 @@ function apply_CSS (cb)
     
     if(cb)
         cb();
+  
 }
 
 function loop (el, cb)
 {
 	let arr = el.children;
 	cb(el, el.className.split(" "))
+	if(arr.length)
+	{
     for(let i of arr)
     {
-        if(i.children.length)
-        {
-            let clas = i.className.split(" ");
-            cb(i, clas);
+       let clas = i.className.split(" ");
+       cb(i, clas);
             
-            loop(i, apply_style);
-        }
-        else
-        {
-            let clas = i.className.split(" ")
-            cb(i, clas)
-        }
+    	loop(i, apply_style);
     }
+	}
 }
 
 function apply_style (el, clas)
@@ -241,14 +248,7 @@ function parse_val(v, fc)//fc means first character
 {
     let z = (v[v.length -1])
     let a = v[0];
-    if((fc === "bg" || fc === "clr" || fc == 'cur') && a ==="c")
-    {
-    	let clr = [...v]
-    	clr.shift();
-        return clr.join("");
-    }
-    else
-    if(fc === "bdr" && a ==="c")
+    if(a ==="c")
     {
     	let clr = [...v]
     	clr.shift();
@@ -306,12 +306,6 @@ document.body.innerHTML += stylStr
 
 }
 
-function apply_single_css (el)
-{
-	cl(el.className.split(" "))
-	apply_style(el, el.className.split(" "));
-}
-
 function apply_MQ()
 {
    
@@ -329,6 +323,8 @@ function apply_MQ()
    {
        i.style.padding = "10px 40px";
     }
+    
+    console.log('iteration count : %i', ict)
 
 }
 
