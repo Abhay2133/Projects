@@ -1,0 +1,50 @@
+*
+{
+	box-sizing: border-box;
+	outline: none;
+}
+
+body{
+	margin: 0px;
+}
+
+a
+{
+	color: black;
+	outline: none;
+	text-decoration: none;
+}
+
+.pop
+{
+	box-shadow: 0px 3px 0px 0px  #333;
+}
+
+.pop:active
+{
+	transform: translateY(2px);
+	box-shadow: 0px 1px 0px 0px ;
+}
+
+.card
+{
+	background: linear-gradient(90deg, #D2EEFF, #75C1FF, #00A9FF);
+}
+
+@media only screen and (min-width: 768px)
+{
+	#viewport, #menu-list
+	{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+	#left{min-width: 10%;}#middle{min-width: 70%;}#right{min-width: 20%;}
+	*{font-size: 18px;}
+	
+	div#hamburger
+	{
+		display: none;
+	}
+
+}
