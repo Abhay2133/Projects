@@ -1,1 +1,124 @@
+<html>
+<meta name='viewport' content="width=device-width, initial-scale=1.0" >
+<Head>
+ 
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/eruda" onload = "eruda.init()"></script>
+<script src="modules/modules.js"></script>
+<script src="modules/css.js"></script>
+<script src="main.js"></script>
+<title>Abhay</title>
+<link rel="shortcut icon" href="../pics/db.jpg" type="image/x-icon">
+</head>
 
+<body class="f-15p" onload = "apply_CSS(apply_MQ)">
+
+<div class="t-c p-l f-xxl bold bg-flag" onclick = "hide(ses('#menu-list'))">
+	Abhay
+</div>
+
+<nav id="menu" class="bg-333">
+	<div class=" f-r-c MQ" id="hamburger">
+		<div class="d-ib hbr-bg-cgrey rc-s lte-bdr-c" onclick="toggleSlide(ses('#menu-list'))">
+			<hr class="w-30p bg-cwhite m">
+			<hr class="w-30p bg-cwhite m">
+			<hr class="w-30p bg-cwhite m">
+		</div>
+	</div>
+	
+	<div class=" h-n of-hdn trns-s t-c bdr-B-xs p-n bnw MQ" id="menu-list">
+		<div class="p hbr-bg-cwhite hbr-clr-cblack MQ li cur-cpointer">HOME</div>
+		<div class="p hbr-bg-cwhite hbr-clr-cblack MQ li cur-cpointer">Products</div>
+		<div class="p hbr-bg-cwhite hbr-clr-cblack MQ li cur-cpointer">About me</div>
+	</div>
+</nav>
+
+<div id="viewport">
+<!-- onclick = "hide(ses('#menu-list'))"-->
+	<div id="left" class="t-c p-l bold-n bg-FFF68C">
+		More Links
+	</div>
+	
+	<div id="middle" class="bd-c">
+	
+<!--
+										MIDDLE START
+-->
+	
+<div class="p-xxxl bnw f-xl t-c m-s rc">
+	Hi
+</div>
+
+<!--
+										MIDDLE 	END
+-->
+	
+	
+	</div>
+	
+	<div id="right" class="bg-C900FF clr-cwhite p">
+		<div class="f-xl p-s rc-s bdr-L-s t-c d-ib">
+				About Me
+			</div>
+			<div class="p-s p-T-l t-c">
+				Hi, my name is Abhay and I am creating this webpage 5<sup>th</sup> time so I am an Idiot...
+			</div>
+	</div>
+</div>
+
+<div id="comment-section">
+	<div id="user-comments" class="bd-B bdr-cc">
+		<div class="bg-CFCFCF t-c p bolder f-xl">
+			Comments
+		</div>
+		<div class="p bnw uc">
+			<div class="user-detail d-F">
+				<div class="dp bdr rc-50 hw-40p of-hdn">
+<img src="../../components/pics/me.jpg" class="h-i w-i">
+				</div>
+				<div class="uid p ">Abhay</div>
+			</div>
+			<div class="comment-txt idt-l p-s">
+				This Awesome
+			</div>
+		</div>
+		
+		<div class="p bnw m-T-xxs uc">
+			<div class="user-detail d-F">
+				<div class="dp bdr rc-50 hw-40p of-hdn">Image</div>
+				<div class="uid p ">Harshi</div>
+			</div>
+			<div class="comment-txt idt-l p-s">
+				Cool bro! 
+			</div>
+		</div>
+		
+	</div>
+	<div id="post-comment" class="p f-r-c">
+		<table class="">
+			<tr>
+				<th colspan="2" class="p-s">Enter Your Comment</td>
+			</tr>
+			<tr>
+				<td class="t-r p">Email : </td>
+				<td><input type="email" class="bdr idt p-s oln-no rc-s"></td>
+			</tr>
+			<tr>
+				<td class="p"> Comment : </td>
+				<td><textarea class="bdr idt-s p-s rc-s oln-no h-XXl"></textarea></td>
+			</tr>
+			<tr>
+				<th colspan="2"><button class="p-s oln-no rc-s">Submit</button></th>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<footer class="bnw t-c p-s">
+	©Copyright.
+	All rights are Reserved.<br>
+	 2019 - 2020
+</footer>
+
+</body>
+</html>
