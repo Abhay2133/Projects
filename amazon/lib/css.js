@@ -56,7 +56,8 @@ const val = {
     "50" : "50%",
     hdn : "hidden",
     i : "inherit",
-    fs : "flex-start"
+    fs : "flex-start",
+    fe : 'flex-end'
 }
 
 const bdrVal = {

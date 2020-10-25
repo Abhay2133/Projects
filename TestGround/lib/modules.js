@@ -132,7 +132,7 @@ function getHeight (self)
 	h = fs + p + p + m + m + bdrT + bdrB;
 	console.log('fs : %i, p : %i, m: %i, bdrB: %i, bdrT: %i, h : %i', fs, p,m, bdrB, bdrT, h)
 	
-	return h+2;
+	return h+1;
 }
 
 function toggleSlide (el)
