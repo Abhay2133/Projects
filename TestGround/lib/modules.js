@@ -130,7 +130,9 @@ function getHeight (self)
 	bdrB = bdrB ? parseInt(bdrB.replace("px", "")) : parseInt("0")
 
 	h = fs + p + p + m + m + bdrT + bdrB;
-	return h+1;
+	console.log('fs : %i, p : %i, m: %i, bdrB: %i, bdrT: %i, h : %i', fs, p,m, bdrB, bdrT, h)
+	
+	return h+2;
 }
 
 function toggleSlide (el)
@@ -141,7 +143,6 @@ function toggleSlide (el)
 	for(let i of c)
 		h += getHeight(i)
 	h += "px";
-	
 	el.style.transition = '0.2s';
 	
 	if(el.style.height != h)
