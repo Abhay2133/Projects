@@ -1,4 +1,4 @@
-var ict = 0
+var ii = 0
 
 const prop1 = {
     p : "padding",
@@ -21,7 +21,10 @@ const prop1 = {
     tp : 'top',
     lf : 'left',
     pos : 'position',
-    zi : 'zIndex'
+    zi : 'zIndex',
+    fdir : "flexDirection",
+    fw : "fontWeight",
+    ws : "whiteSpace"
 }
 
 var hbr = [];
@@ -61,13 +64,18 @@ const val = {
     flx : "flex",
     "50" : "50%",
     hdn : "hidden",
+    scrl : "scroll",
     i : "inherit",
     fs : "flex-start",
     fe : 'flex-end',
     spb : 'space-between',
+    spe : 'space-evenly',
     rel : 'relative',
     fxd : 'fixed',
-    opac : 'rgba(0,0,0,0.5)'
+    opac : 'rgba(0,0,0,0.5)',
+    col : "column",
+    nwrp : "nowrap",
+    trnsprnt : "rgba(0,0,0,0)"
 }
 
 const bdrVal = {
@@ -107,6 +115,9 @@ const spProp = {
     bold : {
         fontWeight : "500"
     },
+    thin : {
+        fontWeight : "300"
+    },
     bolder : {
         fontWeight : "900"
     },
@@ -125,57 +136,81 @@ const spProp = {
 },
 "trns-s" : {
 	transition : "0.2s"
+},
+slider : {
+	display: "flex",
+    overflowX: "scroll" ,
+    scrollSnapType: "x mandatory",
+    scrollBehavior : "smooth"
+},
+slides : {
+	scrollSnapAlign: "start",
+    display: "inline-flex",
+    flexShrink: 0,
+    justifyContent: "center" ,
+    alignItems: "center" ,
+    width: "100%",
+    marginRight: "10px",
+    backgroundPosition: "center",
+    backgroundSize: "contain",
+    backgroundRepeat: "repeat"
+},
+img : {
+	backgroundPosition: "center",
+    backgroundSize: "contain",
+    backgroundRepeat: "repeat",
+    fontSize : "0px"
 }
 }
 
-function apply_CSS (cb)
+async function apply_CSS (cb = apply_MQ)
 {
-	
-    let body = document.body;
-    let bc = body.children
-
-    //apply_style(body, body.className.split(" "))
-    loop(body, apply_style)
+    let lup = await loop(document.body, apply_style)
+    let MQ = await cb()
     
-    if(cb)
-        cb();
-  
+    await hbr_init(fadeOut)
+	//fadeout(ses("#spinner"))
 }
 
-function loop (el, cb)
+async function loop (el, cb, flag = true)
 {
 	let arr = el.children;
-
+	if(flag)
+	{
+		let elClas =  el.className.split(" ")
+		let bbw = await cb(el, elClas,"("+ elClas[elClas.length -1]+") outer")
+	}
+	
 	if(arr.length)
 	{
    	 for(let i of arr)
  	   {
   	     let clas = i.className.split(" ");
-  	     cb(i, clas);
+  	     let bb = await cb(i, clas, "("+clas[clas.length - 1]+")inner");
             
-  	  	loop(i, apply_style);
+  	  	let cc = await loop(i, apply_style, false);
   	  }
 	}
-	cb(el, el.className.split(" "))
 }
 
-function apply_style (el, clas)
+async function apply_style (el, clas, logMess = "")
 {
+
+//console.log("%i : %s %s", ii++, clas.join(), logMess);
 
 let styleRule = {};
     for(let i of clas)
     {
-/*
-    if(i == "MQ")
-    {
-        apply_MQ()
-        continue;
-    }
-    */
     
     if(Object.keys(spProp).includes(i))
     {
-        css(el, spProp[i])
+      await  css(el, spProp[i])
+      if(i == "img")
+      {
+      	cl(el.innerHTML)
+      
+      	el.style.backgroundImage = `url("${el.innerHTML}")`;
+      }
         continue;
     }
     
@@ -184,16 +219,25 @@ let styleRule = {};
         
         if(styleName[0] == "chd")
         {
-        	apply_css_to_children(el, i);
+        	let forAwait = await apply_css_to_children(el, i);
         	continue;
        }
-         if(styleName[0] == "hbr")
+        if(styleName[0] == "hbr")	//	HBR
 		{
 		if(!hbr.includes(i))
-			{
+		{
 			hbr.push(i)
-			apply_hbr(el, i)
+			stylStr += `.${i}:hover
+{`
+			i = i.replace("hbr-", "")
+			let hbr_clases = i.split("_");
+			
+			for(cls of hbr_clases)
+			{
+				await add_hbr(cls)
 			}
+			stylStr += "\n}\n";
+		}
 			continue;
 		}
 		else
@@ -250,8 +294,9 @@ let styleRule = {};
      css(el, styleRule)
 }
 
-function parse_val(v, fc)//fc means first character
+function parse_val(v, fc, mess)//fc means first character
 {
+	if(!v) console.log("value parser bug : "+mess)
     let z = (v[v.length -1])
     let a = v[0];
     if(a ==="c")
@@ -293,28 +338,44 @@ function cl(txt){
     console.log(txt)
 }
 
-function apply_hbr (el, clas)
+var stylStr = '<style>\n';
+
+async function add_hbr (clas, flag)
 {
-	setTimeout(function ()
-{
+	
 	let s = clas.split("-");
-	let key = prop1[s[1]];
-	let valu = parse_val(s[2], s[1]);
-	let stylStr = `<style>
-.${clas}:hover
-{
-	${key} : ${valu};
+	let str = s.join("")
+	if(Object.keys(spProp).includes(str))
+	{
+		console.log(true)
+		for(let key in spProp[str])
+		{
+			let valu = spProp[str][key];
+			stylStr += `${key} : ${valu};`
+		}
+	}
+	else
+	{
+		console.log(s)
+	let key = prop1[s[0]];
+	let valu = await parse_val(s[1], s[0], clas);
+	stylStr += `
+	${key} : ${valu};`
+
+	}
 }
-</style>`;
 
-document.body.innerHTML += stylStr
-}, 500);
-
+async function hbr_init(cb)
+{
+	stylStr += "</style>";
+	document.body.innerHTML += stylStr;
+	console.log(stylStr)
+	if(cb) 
+		cb("spinner", 1)
 }
 
-function apply_MQ()
+async function apply_MQ()
 {
-   
     if(screen.width < 768)
         return;
     ses("#hamburger").style.display = "none";
@@ -331,16 +392,16 @@ function apply_MQ()
     }
 }
 
-function apply_css_to_children(el, clas)
+async function apply_css_to_children(el, clas)
 {
 	clas = clas.replace("chd-", "")
-	//console.log("clas : %s", clas)
+	////console.log("clas : %s", clas)
 	let chdrn = el.children
 	if(chdrn.length)
 	{
 		for(let i of chdrn)
 		{
-			apply_style(i, [clas]);
+			let bb = await apply_style(i, [clas], "(inside CHD styler)");
 		}
 	}
 	else

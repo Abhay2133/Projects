@@ -1,66 +1,212 @@
 <html>
 <meta name='viewport' content="width=device-width, initial-scale=1.0" >
 <Head>
- 
-<link rel="stylesheet" href="style.css">
-<script src="lib/eruda.js" onload = "eruda.init()"></script>
-<script src="lib/modules.js"></script>
-<script src="lib/css.js"></script>
-<script src="main.js"></script>
 <title>Abhay</title>
-<link rel="shortcut icon" href="../pics/db.jpg" type="image/x-icon">
+
 </head>
 
 <body class="f-17p bg-W" onload = "apply_CSS(apply_MQ)">
 
-<nav class="p-s d-flx jc-spb m-n bg-444 clr-W">
+<style>
+@keyframes rot
+{
+	from {transform: rotate(0deg)}
+	to {transform: rotate(360deg)}
+}
+
+@keyframes blink
+{
+	from {opacity: 1}
+	to {opacity: 0}
+}
+</style>
+<div id="spinner" style="display: block; z-index: 99; position: fixed; height: 100%; width: 100%; background: rgba(0,0,0,0.9); transition: opacity 1s;">
+	<div style="position: relative; top: 150px; padding-top: 20px;  border: 0px solid white; border-radius: 5px;display: flex; justify-content:center; height: auto; text-align: center; box-sizing: border-box;">
+		<div style="display: inline-block;">
+			<div id="spin-ring" style="border: 10px solid grey; border-top-color: #1D96FF; border-radius: 50%; height: 80px; width: 80px; animation: rot 1s linear 0s infinite normal;"></div>
+			<div id="spin-text" style="color: #FFF; text-align: center; padding: 15px; animation: blink 0.5s linear 0s infinite alternate;">Loading...</div>
+		</div>
+	</div>
+</div>
+
+<link rel="stylesheet" href="style.css">
+<script src="lib/eruda.js" onload = "eruda.init()"></script>
+<script src="lib/modules.js"></script>
+<script src="lib/css.js"></script>
+
+<!--						ViewPort							-->
+<div id="top"></div>
+<nav class="p-s d-flx jc-spb m-n bg-444 clr-W" id="top-nvbar">
   <div class="d-flx">
     <div class="chd-w-25p chd-bg-cwhite chd-m-7p d-ib hbr-bg-cgrey rc-s lte-bdr-c" onclick="ses('#menu-list').style.display = 'block'">
 		<hr><hr><hr>
 	</div>
-   <div id="logo" class="d-ib bolder f-xl tap trns-s">Ammizaan.in</div>
+    <button id="logo" class="bolder f-xl tap trns-s bdr-0p bg-no clr-W">
+		Ammizaan.in
+	</button>
   </div>
   <div class="d-flx bdrc">
-    <button id="signin" class=" f-l sdh bdr-0p bg-no clr-W">Sign in</button>
-	<button id="cart" class=" f-l sdh bdr-0p bg-no clr-W">Cart</button>
+    <button id="signin" class=" f-l sdh  bdr-0p bg-no clr-W">
+		Sign in
+	</button>
+	<button id="cart" class=" f-xl sdh bdr-0p bg-no clr-W trns-s">
+		Cart
+	</button>
   </div>
 </nav>
 
 <div id="menu-list" class="none pos-fxd lf-n tp-n w-100% of-cscroll h-100 bg-opac p-T-xl">
   <div class=" d-flx jc-fe">
    <div class="d-ib">
-<button class=" bolder f-xxl h-40p w-40p rc-s pop bdr bg-no zi-c9 bg-FFF" onclick="ses('#menu-list').style.display = 'none'">X</button>
+<div class="thin f-xxl h-40p w-40p rc-s pop bdr zi-c9 bg-FFF chd-w-30p chd-bdr-C-cblack chd-bg-000 chd-rc" onclick="ses('#menu-list').style.display = 'none'">
+	<hr class="hr1">
+	<hr class="hr2">
+</div>
     </div>
     </div>
    
-  <div id="menu-list-items" class="chd-d-b chd-idt slideIn pos-fxd of-cscroll lf-n tp-n w-80% h-100 bg-FFF">
-  <div class="  d-b p-xl idt bdr-B f-xxl bolder pos-fxd tp-0p lf-0p w-i bg-W zi-c2">Hello, Sign in</div>
-  <a class="">HOME</a>
-  <a class="">ACCOUNT</a>
-  <a>ORDER</a>
-  <a>BUY AGAIN</a>
-  <a>LIST</a>
-  <a>CUSTOMER SERVICE</a>
-  <div class="d-b idt p-xl idt bdr-T-s f-xxl bolder bdr-C-c#00B1FF">EXPLORE</div>
-  <div class="d-b idt clr-cgrey">Top Category</div>
-  <a>Mobiles</a>
-  <a>Computers</a>
-  <a>Books</a>
-  <a>Amazon fashion</a>
-  <a>See all categories</a>
-  <div class="d-b idt clr-cgrey bdr-T bdr-C-c#E5E5E5 m">Programs and features</div>
-  <a>Today's Deals</a>
-  <a>Amazon Pay</a>
-  <a>Try Prime</a>
-  <a>Sell on Amazon</a>
-  <div class="d-b idt p-xl idt bdr-T-s f-xl bold bdr-C-c#00B1FF">Settings</div>
-  <a>Language</a>
-  <a>Notifications</a>
-  <a>Default Purchase Settings</a>
-  <a>Sign in</a>
- </div>
+  <div id="menu-list-items" class=" chd-d-b chd-idt chd-tp-67p chd-pos-rel slideIn pos-fxd of-cscroll lf-n tp-n w-80% h-100 bg-FFF item-container">
+ 	 <div class=" d-b p-xl idt-s p-L bdr-B f-xxl bolder pos-fxd tp-0p lf-0p w-i bg-W zi-c2 login-item"> &nbsp; Hello, Sign in</div>
+  	<a>HOME</a>
+  	<a>ACCOUNT</a>
+  	<a>ORDER</a>
+  	<a>BUY AGAIN</a>
+  	<a>LIST</a>
+  	<a>CUSTOMER SERVICE</a>
+  	<div class="d-b idt p-xl idt bdr-T-s f-xxl bolder bdr-C-c#00B1FF">EXPLORE</div>
+  	<div class="d-b idt clr-cgrey">Top Category</div>
+  	<a>Mobiles</a>
+  	<a>Computers</a>
+	  <a>Books</a>
+  	<a>Amazon fashion</a>
+  	<a>See all categories</a>
+  	<div class="d-b idt clr-cgrey bdr-T bdr-C-c#E5E5E5 m">Programs and features</div>
+  	<a>Today's Deals</a>
+  	<a>Amazon Pay</a>
+  	<a>Try Prime</a>
+	  <a>Sell on Amazon</a>
+ 	 <div class="d-b idt p-xl p-L bdr-T-s f-xl bold bdr-C-c#00B1FF">ℹ Settings</div>
+ 	 <a>Language</a>
+ 	 <a>Notifications</a>
+ 	 <a>Default Purchase Settings</a>
+ 	 <a>Sign in</a>
+</div>
 </div>  
 
+<div class="p-s p-L p-R d-flx search-bar bg-444">
+	<input class="bdr rc-s idt f-l w-100%" placeholder="Search Ammizaan.in">
+	<button class="p bg-FFC056 sdh trns-s bdr rc-s m-L-s">OK</button>
+</div>
+
+<div class='f p-L p-T-s bg-444 clr-W'>Shop by</div>
+<div class="bg-444 d-flx chd-p chd-p-T-n chd-clr-W shopping-options">
+	<div class="f-c-c chd-p-n">Category</div>
+	<div>Wish List</div>
+	<div>Deals</div>
+	<div>Sell</div>
+</div>
+
+<div class = "t-c p bnw fw-c200 f-l">
+	 Select a location to see product Availablility
+</div>
+
+<div class="d-flx of-scrl bg-FFC056 short-card">
+	<div class='f-c-c p'>
+		<div class="rc-50% h-XXl w-XXl bdr m-a"></div>
+		<div class="t-c f-l ">Mobiles</div>
+	</div>
+	<div class='f-c-c p'>
+		<div class="rc-50% h-XXl w-XXl bdr m-a"></div>
+		<div class="t-c f-l">Electronics</div>
+	</div>
+	<div class='f-c-c p'>
+		<div class="rc-50% h-XXl w-XXl bdr m-a"></div>
+		<div class="t-c f-l">Home</div>
+	</div>
+	<div class='f-c-c p'>
+		<div class="rc-50% h-XXl w-XXl bdr m-a"></div>
+		<div class="t-c f-l">Appliances</div>
+	</div>
+	<div class='f-c-c p'>
+		<div class="rc-50% h-XXl w-XXl bdr m-a"></div>
+		<div class="t-c f-l">Fashion</div>
+	</div>
+	<div class='f-c-c p'>
+		<div class="rc-50% h-XXl w-XXl bdr m-a"></div>
+		<div class="t-c f-l ws-nwrp">Our Brands</div>
+	</div>
+	<div class='f-c-c p'>
+		<div class="rc-50% h-XXl w-XXl bdr m-a"></div>
+		<div class="t-c f-l">Groceries</div>
+	</div>
+	<div class='f-c-c p'>
+		<div class="rc-50% h-XXl w-XXl bdr m-a"></div>
+		<div class="t-c f-l">Devices</div>
+	</div>
+</div>
+	
+<div class="of-scrl" id="carousel">
+ <div class="slider chd-slides chd-h-130p chd-bdr">
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+ </div>       
+</div>
+
+<div class="img h-116p">https://m.media-amazon.com/images/G/31/shazam/Tab-A7-AMA-GIS-1242x450-LEQQj._V417547287_.jpg</div>
+
+<div class="d-flx of-scrl bg-FFC056 short-card chd-ws-nwrp">
+	<div class='f-c-c p sdh'>
+		<div class="rc-50% h-Xl w-Xl bdr m-a"></div>
+		<div class="t-c f ">Amazon Pay</div>
+	</div>
+	<div class='f-c-c p sdh'>
+		<div class="rc-50% h-Xl w-Xl bdr m-a"></div>
+		<div class="t-c f">Recharge</div>
+	</div>
+	<div class='f-c-c p sdh'>
+		<div class="rc-50% h-Xl w-Xl bdr m-a"></div>
+		<div class="t-c f">DTH</div>
+	</div>
+	<div class='f-c-c p sdh'>
+		<div class="rc-50% h-Xl w-Xl bdr m-a"></div>
+		<div class="t-c f">Pay Bills</div>
+	</div>
+	<div class='f-c-c p sd'>
+		<div class="rc-50% h-Xl w-Xl bdr m-a"></div>
+		<div class="t-c f">Rewards</div>
+	</div>
+	
+</div>
+
+<footer class="bg-333">
+	<div>
+		<a href="#top" class="bg-eee d-b">
+			<div class="m-a bdr-10p bdr-C-c#eee bdr-B-C-cblack d-flx h-n w-n"></div>
+			<div class="t-c p-s">Back to top</div>
+		</a>
+	</div>
+	
+	<div class="clr-W chd-t-c chd-p chd-w-200p chd-rc-s chd-lte chd-m-a chd-trns-s">
+		<div class="hbr-wnb m-T">
+		Change Language
+		</div>
+		<div class="hbr-bg-cred_clr-cwhite">
+		Sign in
+		</div>
+	</div>
+	
+	<div class="showCSS ws-nwrp d-flx jc-spe chd-p-s chd-f-12p chd-clr-c#999">
+		<div class="">Condition of use</div>
+		<div class="">Privacy Notice</div>
+		<div class="">Internet - based ads</div>
+	</div>
+	<div class="t-c p p-T-s clr-c#999 bg-trnsprnt f-12p">&copy; 1996-2020, Amazon.com, Inc. and its affiliates</div>
+	
+</footer>
+	
+	
 <script src="main.js"></script>
 </body>
 </html>
