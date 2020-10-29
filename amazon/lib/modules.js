@@ -152,6 +152,46 @@ function toggleSlide (el)
 		
 }
 
+function hideSpinner ()
+{
+	ses("#spinner").style.transition = `opacity 1s`;
+	  setTimeout(()=>{
+  ses("#spinner").style.opacity = "0";
+  
+  setTimeout(()=>{
+   ses("#spinner").style.display = "none"}, 1000)
+   }
+  , 1000);
+
+}
+
+async function fadeOut (targetId, t=1)
+{
+	let target = ses("#"+targetId);
+	target.style.transition = `opacity ${t}s`;
+	let timr = parseInt(t*1000);
+	
+setTimeout(function (){  
+ ses(`#${targetId}`).style.opacity = "0";
+  
+  setTimeout(function (){
+    ses(`#${targetId}`).style.display = "none";
+}, timr);
+}
+, timr);
+}
+
+
+function fadeout (el, t=1){
+	//console.log("In fadeout")
+    el.style.transition = "opacity "+t+"s";
+    timr = t*1000;
+    
+    setTimeout(()=>{el.style.opacity = "0"
+        setTimeout(()=>{el.style.display = "none"}, timr)
+    }, timr)
+}
+
 
 
 

@@ -6,6 +6,13 @@
 
 body{
 	margin: 0px;
+	scroll-behavior: smooth;
+	scroll-snap-type : y mandatory;
+}
+
+body > *
+{
+	scroll-snap-align: start;
 }
 
 a
@@ -45,8 +52,6 @@ bdrc *
 #menu-list-items > *{
 	padding: 15px;
 	font-weight: 400;
-	position: relative;
-	top : 67px;
 }
 
 #menu-list-items > a:hover
@@ -101,6 +106,23 @@ bdrc *
 	to{transform : translateX(0px)}
 }
 
+.hr1
+{
+	position: relative;
+	transform-origin: 0% 50%;
+	top: -5px;
+	left: 5px;
+	transform: rotate(45deg);
+}
+
+.hr2
+{
+	position: relative;
+	transform-origin: 0% 50%;
+	top: 2px;
+	left: 5px;
+	transform: rotate(-45deg);
+}
 
 
 
