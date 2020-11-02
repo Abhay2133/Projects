@@ -6,13 +6,6 @@
 
 body{
 	margin: 0px;
-	scroll-behavior: smooth;
-	scroll-snap-type : y mandatory;
-}
-
-body > *
-{
-	scroll-snap-align: start;
 }
 
 a

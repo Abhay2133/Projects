@@ -1,11 +1,11 @@
 <html>
-<meta name='viewport' content="width=device-width, initial-scale=1.0" >
+<meta name='viewport' content="width=device-width, initial-scale=1" >
 <Head>
 <title>Abhay</title>
 
 </head>
 
-<body class="f-17p bg-W" onload = "apply_CSS(apply_MQ)">
+<body class="f-17p bg-W" >
 
 <style>
 @keyframes rot
@@ -32,11 +32,15 @@
 <link rel="stylesheet" href="style.css">
 <script src="lib/eruda.js" onload = "eruda.init()"></script>
 <script src="lib/modules.js"></script>
-<script src="lib/css.js"></script>
+
 
 <!--						ViewPort							-->
+	
+<div id="viewport" class="scrlB-smth">
+
 <div id="top"></div>
-<nav class="p-s d-flx jc-spb m-n bg-444 clr-W" id="top-nvbar">
+<nav>
+<div class="p-s d-flx jc-spb m-n bg-444 clr-W" id="top-nvbar">
   <div class="d-flx">
     <div class="chd-w-25p chd-bg-cwhite chd-m-7p d-ib hbr-bg-cgrey rc-s lte-bdr-c" onclick="ses('#menu-list').style.display = 'block'">
 		<hr><hr><hr>
@@ -53,16 +57,17 @@
 		Cart
 	</button>
   </div>
+</div>
 </nav>
 
 <div id="menu-list" class="none pos-fxd lf-n tp-n w-100% of-cscroll h-100 bg-opac p-T-xl">
   <div class=" d-flx jc-fe">
-   <div class="d-ib">
-<div class="thin f-xxl h-40p w-40p rc-s pop bdr zi-c9 bg-FFF chd-w-30p chd-bdr-C-cblack chd-bg-000 chd-rc" onclick="ses('#menu-list').style.display = 'none'">
-	<hr class="hr1">
-	<hr class="hr2">
-</div>
-    </div>
+ 	  <div class="d-ib">
+			<div class="thin f-xxl h-40p w-40p rc-s pop bdr zi-c9 bg-FFF chd-w-30p chd-bdr-C-cblack chd-bg-000 chd-rc" onclick="ses('#menu-list').style.display = 'none'">
+				<hr class="hr1">
+				<hr class="hr2">
+			</div>
+    	</div>
     </div>
    
   <div id="menu-list-items" class=" chd-d-b chd-idt chd-tp-67p chd-pos-rel slideIn pos-fxd of-cscroll lf-n tp-n w-80% h-100 bg-FFF item-container">
@@ -182,10 +187,10 @@
 
 <footer class="bg-333">
 	<div>
-		<a href="#top" class="bg-eee d-b">
-			<div class="m-a bdr-10p bdr-C-c#eee bdr-B-C-cblack d-flx h-n w-n"></div>
-			<div class="t-c p-s">Back to top</div>
-		</a>
+			<div class="m-a bdr-10p bdr-C-crgba(0,0,0,0) bdr-B-C-cwhite d-flx h-n w-n"></div>
+			<div class="t-c p-s clr-W">
+				<a href="#top">Back to Top</a>
+			</div>
 	</div>
 	
 	<div class="clr-W chd-t-c chd-p chd-w-200p chd-rc-s chd-lte chd-m-a chd-trns-s">
@@ -202,11 +207,14 @@
 		<div class="">Privacy Notice</div>
 		<div class="">Internet - based ads</div>
 	</div>
-	<div class="t-c p p-T-s clr-c#999 bg-trnsprnt f-12p">&copy; 1996-2020, Amazon.com, Inc. and its affiliates</div>
+	<div class="t-c p p-T-s clr-c#999 bg-trnsprnt f-12p ff-cmbr">&copy; 1996-2020, Amazon.com, Inc. and its affiliates</div>
 	
 </footer>
-	
-	
+
+</div>
+
+
 <script src="main.js"></script>
+<script src="lib/css.js"></script>
 </body>
 </html>

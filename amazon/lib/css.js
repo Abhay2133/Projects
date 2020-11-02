@@ -24,7 +24,9 @@ const prop1 = {
     zi : 'zIndex',
     fdir : "flexDirection",
     fw : "fontWeight",
-    ws : "whiteSpace"
+    ws : "whiteSpace",
+    ff : 'fontFamily',
+    scrlb : "scrollBehavior"
 }
 
 var hbr = [];
@@ -75,7 +77,9 @@ const val = {
     opac : 'rgba(0,0,0,0.5)',
     col : "column",
     nwrp : "nowrap",
-    trnsprnt : "rgba(0,0,0,0)"
+    trnsprnt : "rgba(0,0,0,0)",
+    cmbr : 'cambria',
+    smth : "smooth"
 }
 
 const bdrVal = {
@@ -408,7 +412,7 @@ async function apply_css_to_children(el, clas)
 		return;
 }
 
-
+apply_CSS(apply_MQ)
 
 
 
