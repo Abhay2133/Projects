@@ -7,12 +7,14 @@ To use it in ur project just email me at abhaybishthestudent@gmail.com
 
 */
 
-function css(el, props, callback)
+async function css(el, props, debug, callback)
 {
 
     for (let i in props)
-      {  el.style[i] = props[i];
-         // console.log(el.class +"=>"+i+":"+props[i])
+      {
+		  el.style[i] = props[i];
+		if(debug)
+        	console.log(el.tagName +"=>"+i+":"+props[i])
       }
 
     if (callback)
@@ -29,7 +31,9 @@ const prop1 = {
     w : "width",
     h : "height",
     f : "fontSize",
-    bg : "background"
+    bg : "background",
+    clr : "color",
+    out : "outline"
 }
 
 const prop2 = {
@@ -38,6 +42,7 @@ const prop2 = {
     L : "Left",
     R : "Right",
     lg : "",	//lg for Linear Gradient
+	rgba : "", // rgba for aplha value in text
 	C : "Color"
 }
 
@@ -52,6 +57,7 @@ const val = {
     no : "none",
     b : "block",
     ib : "inline-block",
+    flx : "flex",
     c : "center",
     lft : "left",
     r : "right",
@@ -90,7 +96,18 @@ const spProp = {
         fontWeight : "100",
         color: "grey"
     },
-    bdr : "1px solid black"
+    bdr : {
+	"border" : "1px solid black"
+	},
+    "trns-txt" : {
+		background : "url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/990140/download.png)   -20px -20px fixed",
+  	  "-webkit-text-fill-color" : "transparent",
+	    "-webkit-background-clip" : "text"
+	},
+    flxwrp : 
+    {
+    	"flexWrap" : "wrap"
+   } 
 }
 
 function apply_CSS (cb)
@@ -112,6 +129,7 @@ function loop (arr)
 {
     for(let i of arr)
     {
+
         if(i.children.length)
         {
             let clas = i.className.split(" ");
@@ -141,7 +159,8 @@ let styleRule = {};
  
     if(Object.keys(spProp).includes(i))
     {
-        css(el, spProp[i])
+    	//console.log("spProp used : "+i);
+        css(el, spProp[i], false)
         continue;
     }
     
@@ -202,7 +221,7 @@ function parse_val(sn, val)//sn mean styleName var in Loop apply_CSS function
 	let fc = sn[0]			// prop1
 	let sc = sn[1];		//  prop2
     let tc = sn[2]		// val, for bdr prop
-    if(fc === "bg")
+    if(fc === "bg" || fc == "clr")
     {
     	if(sc == "lg")
     	{
@@ -210,13 +229,18 @@ function parse_val(sn, val)//sn mean styleName var in Loop apply_CSS function
     		parsed_val = `linear-gradient(${v})`;
     	}
     	else
- 	       parsed_val = '#'+v;
+		if(sc == 'rgba')
+		{
+			parsed_val = `rgba(${v})`;
+		}
+		else
+ 	       parsed_val = v;
     }
     else
 	if(fc == "bdr")
 	{
 		if(sc == "C")		// for color we use C for prop2
-			parsed_val = `1px solid ${v}`; // ex : bdr-C-green
+			parsed_val = v; // ex : bdr-C-green
 		else		
 		if(!Object.keys(prop2).includes(sc) || tc)
 			parsed_val = `${v} solid`
@@ -226,7 +250,7 @@ function parse_val(sn, val)//sn mean styleName var in Loop apply_CSS function
     else
     if(z == "p")
     {
-        parsed_val = px+"x";
+        parsed_val = v+"x";
     }
     else
     if(z == "%" || v.includes("vh"))
@@ -236,7 +260,7 @@ function parse_val(sn, val)//sn mean styleName var in Loop apply_CSS function
     else
         parsed_val = null;
     
-    console.log(`(${val}) : ${v} -> ${parsed_val}`)
+    //console.log(`(${val}) : ${v} -> ${parsed_val}`)
     return parsed_val;
 }
 

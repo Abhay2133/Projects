@@ -1,0 +1,74 @@
+#menu
+{
+    border: 1px solid;
+    display: inline-block ;
+    border-radius: 5px;
+}
+
+#menu > hr
+{
+    width: 25px;
+    border: 1px solid black;
+    margin: 8px;
+    border-radius: 5px;
+}
+
+#menu:hover
+{
+    background: #333;
+}
+
+#menu:hover > hr
+{
+    border-color: white;
+}
+
+#search
+{
+    display: inline-block ;
+}
+
+#s_bg
+{
+    height: 30px;
+    width: 30px;
+    border: 1px solid;
+    border-radius: 5px;
+    border: 1px solid;
+    
+}
+
+#s_bg:hover
+{
+    background-color: #2EAFFF;
+}
+
+#s_bg:hover > #s_icon > * 
+{
+    border-color: #fff;
+}
+
+#s_icon
+{
+    border: 1px solid red;
+    position: relative ;
+    top:6px;
+    left:8px;
+}
+
+#si_circle
+{
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 3px solid #444;
+}
+
+#si_hndl
+{
+    border: 0px solid ;
+    border-top: 3px solid #444;
+    width: 13px;
+    transform: translateY(-8px) translateX(9px) rotate(50deg);
+    border-radius: 5px;
+}
