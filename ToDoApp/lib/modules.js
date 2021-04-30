@@ -16,3 +16,16 @@ function st (str, cb) // st means select a Tag
 	
 	return req_tag;
 }
+
+function pop(tag)
+{
+  let ms = 100;
+  let sec = ms / 1000;
+  tag.style.transition = sec + "s";
+  setTimeout(function() {
+    tag.style.transform = "scale(0.8)";
+    setTimeout(function() {
+      tag.style.transform = "scale(1)"
+    }, ms)
+  }, 20)
+}

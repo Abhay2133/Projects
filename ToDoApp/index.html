@@ -3,22 +3,36 @@
     <head>
        <meta charset="utf-8">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>Title </title>
+       <title>List Maker</title>
        <meta name="description" content="The HTML5 Herald">
        <meta name="author" content="SitePoint"> 
-       <script src="https://cdn.jsdelivr.net/npm/eruda" onload = "eruda.init()"></script>
-       <link rel="stylesheet" href="css/styles.css">
+       <script src="lib/eruda.js" onload = "eruda.init()"></script>
        <script src="lib/modules.js"></script>
        <script src="lib/ass.js"></script>
+       <link rel="stylesheet" href="./lib/icons.css" />
+       <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body class="m-n">
 
-<div id="app_name" class="t-c p rc-s m-s f-xl bg-lg-90deg,#D9F9FF,#78EAFF,#44BFFF">
-	To Do List Maker
+<div id="app_name" class="t-c bg-lg-90deg,#FF9EFF,#DE76FF,#C75CFF m rc f-r-c bb">
+	
+	<div class="f-c-c p">
+	<div id="menu">
+            <hr><hr><hr>
+        </div>
+	</div>
+	
+	<h1 class = "w-100% t-c p-l bold m-n f-25p clr-#fff">
+			List Maker
+	</h1>
 </div>
 
-<hr class="bdr-n bdr-T-2px m-n showCSS">
+<div class="f-r-c bb m m-T-n">
+	<input class="d-b p bdr out-no rc w-100% h-35p f-16p" type="search" placeholder="Search a List">
+	<button class="d-b rc-s bdr out-no h-35p m-L f-16p bg-#444 clr-#fff" onclick="pop(this)"> Search </button>
+	
+</div>
 
 <div id="list_container">
 	
