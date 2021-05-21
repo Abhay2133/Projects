@@ -1,0 +1,13 @@
+input{
+	outline : none;
+	border: 1px solid;
+	padding : 5px;
+	border-radius : 5px;
+}
+
+button
+{
+	padding : 5px;
+	outline : none;
+	border-radius : 5px;
+}
