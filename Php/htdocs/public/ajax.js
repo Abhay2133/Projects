@@ -1,18 +1,15 @@
 function ajax (url, obj,onReadyStateChanged, method="GET")
 	{
 	var xhttp = new XMLHttpRequest();
-	
 	if(method == "GET" && obj)
 	{
 		url += '?';
 		for(let key in obj)
 			url += `${key}=${obj[key]}&`;
 		url = url.substring(0, url.length - 1)
-		//console.log(url)
 	}
 	else
 		obj = JSON.stringify(obj)
-	
 	xhttp.open(method, url, true);
 	if(method == "POST")
 	{
