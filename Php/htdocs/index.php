@@ -1,3 +1,3 @@
 <?php
-	readfile("./index.htm");
+	readfile("./views/login.htm");
 ?>
