@@ -1,82 +1,119 @@
 <?php
 
-	require "MySQL.php";
+	require "PDO.php";
 	$data = json_decode(file_get_contents("php://input"));
 
-	$json = array("status" => 200);
+	$res = array("status" => 200);
 	
 	if($_REQUEST["signup"])
 	{
 		$uid = $data->uid;
 		$pswrd = $data->pswrd;
-		$json["debug"] = strlen($uid).", ".strlen($pswrd);
-		if(strlen($uid) < 5 || strlen($pswrd) < 5){
-			//$json["uid & password length Checker"] = "true";
-			$json["snackbar_error"] = "Username and Password cannot be shorter than 5 letters";
-			$json["status"] = 400;
-			echo json_encode($json);
-			return;
-		}
-		
-		$users = new MySQL("Users_Details");
-
-		if( $users->searchCol("uid", $uid)["pos"]){
-			$json["snackbar"] = "Username is already Taken ";
-		}
-		/*
-		else {
-			
-			$json["snackbar"] = $users->add("$uid,$pswrd,NULL");
-			$json["status"] = 200;
-		}
+		$pswrd = password_hash($pswrd, PASSWORD_DEFAULT);
+		$time = time();
+		$loginToken = bin2hex(random_bytes(10));
+		$users = new PDOmysql ("users", "users_details");
+		$res["table"] = $users->createNewTable("(uid varchar(10) PRIMARY key,
+			pswrd varchar(255) not null,
+			loginToken varchar(10), 
+			lastLoginTime int(20)
+		)");
+		$res["data"] = $users->insert("(\"$uid\", \"$pswrd\", \"$loginToken\", $time)", "(uid, pswrd, loginToken, lastLoginTime)", $_REQUEST["debug"]);
 	}
 	else
-	if($_REQUEST["read"])
+	if( $_REQUEST["genToken"] )
 	{
-		$db->read2json();
+		$token = bin2hex(random_bytes(10));
+		$res["token"] = $token;
 	}
 	else
-	if($_REQUEST["login"]){
+	if( $_REQUEST["login"] )
+	{
 		$uid = $data->uid;
 		$pswrd = $data->pswrd;
-		
-		if( $db->searchCol("uid", $uid) && $db->searchCol("pswrd", $pswrd) )
+		$users = new PDOmysql ("users", "users_details");
+		$select = $users->select ("uid, pswrd", "uid = \"$uid\"", $_REQUEST["debug"]);
+		if( count($select) > 0)
 		{
-			$json["snackbar"] =  "Login Success !";
-			$json["status"] = 200;
+			$res["loginSuccess"]  = password_verify( $pswrd, $select[0]["pswrd"]) ? true : false;
+			if($res["loginSuccess"]){
+				$token = bin2hex(random_bytes(10));
+				$time = time();
+				$res["update"] = $users->update("loginToken = \"$token\", lastLoginTime = $time", "uid = \"$uid\"");
+				$res["update"] = $res["update"] ? $res["update"] : "Token Updated";
+				$res["token"] = $token;
+				$res["time"] = $time;
+			}
+			else{
+				$res["error"] = "Wrong Password !";
+			}
 		}
 		else{
-			$json["snackbar"] =  "Username or password is wrong ! ";
-			$json["status"] = 403;
+			$res["loginSuccess"]  = false;
+			$res["error"]  = "Wrong Username !";
 		}
 	}
 	else
-	if(strlen($_GET["hasuid"])){
-		$uid = $_GET["hasuid"];
-		$debug = $_GET["debug"];
-		
-		$db = new DB("users.csv");
-		$search_data = $db->searchCol("username", $uid, $debug);
-		//print_r($search_data);
-		if($search_data["pos"] > 0)
+	if($_REQUEST["autoLogin"])
+	{
+		$token = $data->token;	$token_time = $data->time;
+		$cur_time = time();
+		$res["token"] = $token;
+		$res["autoLogin"] = false;
+		if(strlen($token) < 10)
 		{
-			$json["uid_info"] = "Username already taken !";
-			$json["status"] = 409;
+			$res["error"] = "token length is short !";
+		}
+		else
+		if(($cur_time - $token_time) > 2592000 && strlen($token) >= 10)
+		{
+			$res["error"] = "token expired !";
+		}
+		else
+		if(($cur_time - $token_time) < 2592000 && strlen($token) >= 10)
+		{
+			$users = new PDOmysql ("users", "users_details");
+			$loginTokens = $users->select("loginToken");
+			foreach($loginTokens as $loginToken)
+			{
+				if($loginToken["loginToken"] == $token){
+					$users->update("lastLoginTime = $cur_time", "loginToken = \"$token\"");
+					$res["autoLogin"] = true;
+					break;
+				}
+			}
+			if(!$res["autoLogin"])
+				$res["error"] = "Invalid Token !";
+		}
+		else {
+			$res["error"] = "unknown";
+		}
+	}
+	else
+	if( $_REQUEST["deleteUser"])
+	{
+		$res["deleteUser"] = false;
+		$uid = $data->uid;
+		$pswrd = $data->pswrd;
+		$users = new PDOmysql ("users", "users_details");
+		$select = $users->select ("uid, pswrd", "uid = \"$uid\"", $_REQUEST["debug"]);
+		if( count($select) > 0)
+		{
+			$res["loginSuccess"]  = password_verify( $pswrd, $select[0]["pswrd"]) ? true : false;
+			if($res["loginSuccess"]){
+				$delRes = $users->deleteRow("uid = \"$uid\"");
+				$res["deleteUser"] = $delRes ? $delRes : true;
+			}
+			else{
+				$res["error"] = "Wrong Password !";
+			}
 		}
 		else
 		{
-			$json["uid_info"] = "Username available";
-			$json["status"] = 200;
+			$res["error"] = "invalid username !";
 		}
 	}
-	else
-	if( $_REQUEST["update"])
-	{
-		$old_data = $data->od;
-		$new_data = $data->nd;
-		$col = $data->col;
-		$json["success"] = $db->update ($col, $old_data, $new_data, $_REQUEST["debug"]);
-	}
-	*/
-	echo json_encode($json);
+	
+	
+	echo json_encode($res);
 ?>
